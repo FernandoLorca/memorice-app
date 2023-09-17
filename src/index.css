@@ -8,13 +8,36 @@ body {
 }
 
 .cardPattern {
-  background-color: #050532;
-  opacity: 0.9;
-  background-image: linear-gradient(135deg, #a5a8cf 25%, transparent 25%),
-    linear-gradient(225deg, #a5a8cf 25%, transparent 25%),
-    linear-gradient(45deg, #a5a8cf 25%, transparent 25%),
-    linear-gradient(315deg, #a5a8cf 25%, #050532 25%);
-  background-position: 16px 0, 16px 0, 0 0, 0 0;
-  background-size: 16px 16px;
-  background-repeat: repeat;
+  background: linear-gradient(
+      45deg,
+      #e33333 10%,
+      transparent 11%,
+      transparent 89%,
+      #e33333 90%
+    ),
+    linear-gradient(
+      135deg,
+      #e33333 10%,
+      transparent 11%,
+      transparent 89%,
+      #e33333 90%
+    ),
+    radial-gradient(circle, transparent 25%, #020232 26%),
+    linear-gradient(
+      0deg,
+      transparent 44%,
+      #e33333 45%,
+      #e33333 55%,
+      transparent 56%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 44%,
+      #e33333 45%,
+      #e33333 55%,
+      transparent 56%
+    );
+  background-size: 1em 1em;
+  background-color: #020232;
+  opacity: 1;
 }
