@@ -36,7 +36,7 @@ export default function CardGrid() {
   }
 
   return (
-    <section className="grid grid-cols-5 px-3 grid-rows-4 place-items-center gap-2 md:gap-y-10">
+    <section className="grid grid-cols-3 px-3 grid-rows-4 place-items-center gap-y-2 md:grid-cols-5 md:gap-y-5 lg:gap-y-10">
       {showCard.map(card => (
         <div key={card.id}>
           <CardPattern
