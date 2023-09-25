@@ -1,5 +1,5 @@
 import uuid4 from 'uuid4'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Card from './Card'
 import CardPattern from './CardPattern'
 import cardJson from '../cards/cards.json'
@@ -12,27 +12,41 @@ export default function CardGrid() {
         id: uuid4(),
         ...card,
         flipped: false,
+        matched: false,
       }
     })
     const shuffleCards = addParametersToCards.sort(() => Math.random() - 0.5)
 
     return shuffleCards
   }
-
   const [showCard, setShowCard] = useState(newCards)
 
-  const flippedCardsHandler = id => {
-    const updateCard = showCard.map(card => {
-      if (card.id === id) {
-        return {
-          ...card,
-          flipped: !card.flipped,
+  function flippedCardsHandler(id) {
+    const flippedCards = showCard.filter(card => card.flipped)
+
+    if (flippedCards.length >= 2) {
+      const updateCards = showCard.map(card => {
+        if (card.flipped) {
+          return {
+            ...card,
+            flipped: false,
+          }
         }
-      } else {
         return card
-      }
-    })
-    setShowCard(updateCard)
+      })
+      setShowCard(updateCards)
+    } else {
+      const updateCard = showCard.map(card => {
+        if (card.id === id) {
+          return {
+            ...card,
+            flipped: !card.flipped,
+          }
+        }
+        return card
+      })
+      setShowCard(updateCard)
+    }
   }
 
   return (
@@ -48,7 +62,6 @@ export default function CardGrid() {
             cardId={card.id}
             cardContent={card.content}
             flipped={card.flipped}
-            flippedCardsHandler={flippedCardsHandler}
           />
         </div>
       ))}
