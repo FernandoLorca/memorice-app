@@ -88,7 +88,7 @@ export default function CardGrid() {
   }, [selectedCards])
 
   return (
-    <section className="grid grid-cols-3 px-3 grid-rows-4 place-items-center gap-y-2 md:grid-cols-5 md:gap-y-5 lg:gap-y-10">
+    <section className="grid grid-cols-3 px-3 grid-rows-4 place-items-center gap-y-2 md:grid-cols-5 md:gap-y-5 lg:gap-y-8 lg:px-32">
       {showCard.map(card => (
         <div key={card.id}>
           <CardPattern
