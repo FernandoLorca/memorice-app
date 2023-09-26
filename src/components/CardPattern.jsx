@@ -9,7 +9,7 @@ export default function CardPattern({
   return (
     <div
       className={`w-32 h-40 border-2 rounded-md border-gray-900 cursor-pointer ${
-        cardMatched ? 'matched' : 'cardPattern'
+        cardMatched ? 'matched bg-gray-950' : 'cardPattern'
       } ${flipped ? 'hidden' : 'flex'}`}
       onClick={() => {
         setSelectedCards([...selectedCards, cardId])

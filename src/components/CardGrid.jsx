@@ -24,7 +24,7 @@ export default function CardGrid() {
 
   function flippedCardsHandler(id) {
     const updateCards = showCard.map(card => {
-      if (card.id === id) {
+      if (card.id === id && selectedCards.length < 2) {
         return {
           ...card,
           flipped: true,
