@@ -1,8 +1,13 @@
 {
   "name": "memorice-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "author": {
+    "name": "Fernando Lorca",
+    "email": "florcapinto@gmail.com",
+    "url": "https://fernando-lorca.netlify.app"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
