@@ -4,12 +4,13 @@ export default function CardPattern({
   selectedCards,
   setSelectedCards,
   flipped,
+  cardMatched,
 }) {
   return (
     <div
-      className={`w-32 h-40 border-2 rounded-md border-gray-900 cursor-pointer cardPattern ${
-        flipped ? 'hidden' : 'flex'
-      }`}
+      className={`w-32 h-40 border-2 rounded-md border-gray-900 cursor-pointer ${
+        cardMatched ? 'matched' : 'cardPattern'
+      } ${flipped ? 'hidden' : 'flex'}`}
       onClick={() => {
         setSelectedCards([...selectedCards, cardId])
         flippedCardsHandler(cardId)

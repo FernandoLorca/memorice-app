@@ -22,84 +22,70 @@ export default function CardGrid() {
   const [showCard, setShowCard] = useState(newCards)
   const [selectedCards, setSelectedCards] = useState([])
 
-  useEffect(() => {
-    if (selectedCards.length === 2) {
-      const [firstCard, secondCard] = selectedCards
-      const updateCards = showCard.map(card => {
-        if (card.id === firstCard || card.id === secondCard) {
-          return {
-            ...card,
-            matched: true,
-          }
+  function flippedCardsHandler(id) {
+    const updateCards = showCard.map(card => {
+      if (card.id === id) {
+        return {
+          ...card,
+          flipped: true,
         }
-        return card
-      })
-      setShowCard(updateCards)
-    }
-  }, [selectedCards])
+      } else {
+        return {
+          ...card,
+        }
+      }
+    })
+    setShowCard(updateCards)
+  }
 
   function matchCheck() {
     const [firstIdCard, secondIdCard] = selectedCards
 
-    const firstCard = showCard.filter(
-      card => firstIdCard === card.id && card.id
-    )
-
-    const secondCard = showCard.filter(
+    let firstCard = showCard.filter(card => firstIdCard === card.id && card.id)
+    let secondCard = showCard.filter(
       card => secondIdCard === card.id && card.id
     )
 
-    console.log(firstCard)
-    console.log(secondCard)
-
-    if (firstCard[0].content !== secondCard[0].content)
-      return setSelectedCards([])
-
-    // Estoy haciendo match justo acá.
-    // Arreglar el momento en que se realiza el match (funcion flippedCardsHandler) Porque la funcion match se invoca no en el momento correcto.
-    console.log('match')
-  }
-
-  function flippedCardsHandler(id) {
-    const flippedCards = showCard.filter(card => card.flipped)
-
-    if (flippedCards.length === 2) {
-      matchCheck()
-
-      const updateCards = showCard.map(card => {
-        if (card.flipped) {
+    setTimeout(() => {
+      if (firstCard[0].content !== secondCard[0].content) {
+        const updateCards = showCard.map(card => {
           return {
             ...card,
             flipped: false,
           }
-        }
-        return card
-      })
-      setShowCard(updateCards)
-    } else {
-      const updateCard = showCard.map(card => {
-        if (card.id === id) {
-          return {
-            ...card,
-            flipped: !card.flipped,
+        })
+        setShowCard(updateCards)
+        setSelectedCards([])
+        return
+      } else {
+        const updateCards = showCard.map(card => {
+          if (card.id === firstIdCard || card.id === secondIdCard) {
+            return {
+              ...card,
+              matched: true,
+            }
+          } else {
+            return {
+              ...card,
+            }
           }
-        }
-        return card
-      })
-      setShowCard(updateCard)
+        })
+        setShowCard(updateCards)
+        setSelectedCards([])
+        return
+      }
+    }, 1000)
+  }
+
+  function selectedCardsLengthChecker(selectedCards) {
+    if (selectedCards.length === 2) {
+      matchCheck()
     }
   }
 
-  // if (selectedCards.length === 2) {
-  //   const updateCards = showCard.map(card => {
-  //     if (card.id !== selectedCards[0] || card.id !== selectedCards[1]) {
-  //       return console.log('no son iguales')
-  //     }
-  //     return card
-  //   })
-  //   setShowCard(updateCards)
-  //   setSelectedCards([])
-  // }
+  useEffect(() => {
+    selectedCardsLengthChecker(selectedCards)
+  }, [selectedCards])
 
   return (
     <section className="grid grid-cols-3 px-3 grid-rows-4 place-items-center gap-y-2 md:grid-cols-5 md:gap-y-5 lg:gap-y-10">
@@ -111,11 +97,13 @@ export default function CardGrid() {
             flippedCardsHandler={flippedCardsHandler}
             selectedCards={selectedCards}
             setSelectedCards={setSelectedCards}
+            cardMatched={card.matched}
           />
           <Card
             cardId={card.id}
             cardContent={card.content}
             flipped={card.flipped}
+            cardMatched={card.matched}
           />
         </div>
       ))}

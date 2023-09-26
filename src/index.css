@@ -41,3 +41,14 @@ body {
   background-color: #020232;
   opacity: 1;
 }
+
+.matched {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.matched::before {
+  content: '✅';
+  font-size: 24px;
+}
