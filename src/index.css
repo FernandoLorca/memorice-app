@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 body {
-  background-color: #01000c;
   color: #f3f3f3;
+  background: rgb(2, 8, 31);
+  background: radial-gradient(
+    circle,
+    rgba(2, 8, 31, 1) 0%,
+    rgba(1, 0, 12, 1) 100%
+  );
 }
 
 .cardPattern {
