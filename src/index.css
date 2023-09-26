@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  color: #f3f3f3;
+  background: rgb(2, 8, 31);
+  background: radial-gradient(
+    circle,
+    rgba(2, 8, 31, 1) 0%,
+    rgba(1, 0, 12, 1) 100%
+  );
+}
+
+.cardPattern {
+  background: linear-gradient(
+      45deg,
+      #e33333 10%,
+      transparent 11%,
+      transparent 89%,
+      #e33333 90%
+    ),
+    linear-gradient(
+      135deg,
+      #e33333 10%,
+      transparent 11%,
+      transparent 89%,
+      #e33333 90%
+    ),
+    radial-gradient(circle, transparent 25%, #020232 26%),
+    linear-gradient(
+      0deg,
+      transparent 44%,
+      #e33333 45%,
+      #e33333 55%,
+      transparent 56%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 44%,
+      #e33333 45%,
+      #e33333 55%,
+      transparent 56%
+    );
+  background-size: 1em 1em;
+  background-color: #020232;
+  opacity: 1;
+}
+
+.matched {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.matched::before {
+  content: '✅';
+  font-size: 24px;
+}
