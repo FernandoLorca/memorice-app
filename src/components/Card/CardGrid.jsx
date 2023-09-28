@@ -1,26 +1,13 @@
-import uuid4 from 'uuid4'
-import { useState, useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+
+import { NewCardsContext } from '../../context/NewCardsContext'
+
 import Card from './components/Card'
 import CardPattern from './components/CardPattern'
-import cardJson from '../../cards/cards.json'
 
 export default function CardGrid() {
-  function newCards() {
-    const duplicateCards = [...cardJson, ...cardJson]
-    const addParametersToCards = duplicateCards.map(card => {
-      return {
-        id: uuid4(),
-        ...card,
-        flipped: false,
-        matched: false,
-      }
-    })
-    const shuffleCards = addParametersToCards.sort(() => Math.random() - 0.5)
-
-    return shuffleCards
-  }
-  const [showCard, setShowCard] = useState(newCards)
-  const [selectedCards, setSelectedCards] = useState([])
+  const { showCard, setShowCard, selectedCards, setSelectedCards } =
+    useContext(NewCardsContext)
 
   function flippedCardsHandler(id) {
     const updateCards = showCard.map(card => {
