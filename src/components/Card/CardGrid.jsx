@@ -1,8 +1,8 @@
 import uuid4 from 'uuid4'
 import { useState, useEffect } from 'react'
-import Card from './Card'
-import CardPattern from './CardPattern'
-import cardJson from '../cards/cards.json'
+import Card from './components/Card'
+import CardPattern from './components/CardPattern'
+import cardJson from '../../cards/cards.json'
 
 export default function CardGrid() {
   function newCards() {
@@ -77,11 +77,8 @@ export default function CardGrid() {
     }, 1000)
   }
 
-  function selectedCardsLengthChecker(selectedCards) {
-    if (selectedCards.length === 2) {
-      matchCheck()
-    }
-  }
+  const selectedCardsLengthChecker = selectedCards =>
+    selectedCards.length === 2 && matchCheck()
 
   useEffect(() => {
     selectedCardsLengthChecker(selectedCards)
