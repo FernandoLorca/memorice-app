@@ -22,6 +22,8 @@ export default function NewCardsContextProvider({ children }) {
   const [showCard, setShowCard] = useState(newCards)
   const [selectedCards, setSelectedCards] = useState([])
 
+  const resetCardGame = () => setShowCard(newCards)
+
   return (
     <NewCardsContext.Provider
       value={{
@@ -30,6 +32,7 @@ export default function NewCardsContextProvider({ children }) {
         setShowCard,
         selectedCards,
         setSelectedCards,
+        resetCardGame,
       }}
     >
       {children}

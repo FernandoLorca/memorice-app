@@ -6,7 +6,7 @@ import Card from './components/Card'
 import CardPattern from './components/CardPattern'
 
 export default function CardGrid() {
-  const { showCard, setShowCard, selectedCards, setSelectedCards } =
+  const { showCard, setShowCard, selectedCards, setSelectedCards, string } =
     useContext(NewCardsContext)
 
   function flippedCardsHandler(id) {
