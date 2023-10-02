@@ -1,3 +1,3 @@
 # Memorice game
 
-This is a Memorice game created by Pedro and Fernando Lorca
+This is a Memorice game created by [Fernando Lorca](https://fernando-lorca.netlify.app)
