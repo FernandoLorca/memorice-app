@@ -6,10 +6,10 @@ import Card from './components/Card'
 import CardPattern from './components/CardPattern'
 
 export default function CardGrid() {
-  const { showCard, setShowCard, selectedCards, setSelectedCards, string } =
+  const { showCard, setShowCard, selectedCards, setSelectedCards } =
     useContext(NewCardsContext)
 
-  function flippedCardsHandler(id) {
+  function flippedCardsHandler(id: string): void {
     const updateCards = showCard.map(card => {
       if (card.id === id && selectedCards.length < 2) {
         return {
@@ -28,9 +28,13 @@ export default function CardGrid() {
   function matchCheck() {
     const [firstIdCard, secondIdCard] = selectedCards
 
-    let firstCard = showCard.filter(card => firstIdCard === card.id && card.id)
+    let firstCard = showCard.filter(
+      card =>
+        typeof firstIdCard === 'string' && firstIdCard === card.id && card.id
+    )
     let secondCard = showCard.filter(
-      card => secondIdCard === card.id && card.id
+      card =>
+        typeof secondIdCard === 'string' && secondIdCard === card.id && card.id
     )
 
     setTimeout(() => {
@@ -46,7 +50,12 @@ export default function CardGrid() {
         return
       } else {
         const updateCards = showCard.map(card => {
-          if (card.id === firstIdCard || card.id === secondIdCard) {
+          if (
+            typeof card.id === 'string' &&
+            typeof firstIdCard === 'string' &&
+            typeof secondIdCard === 'string' &&
+            (card.id === firstIdCard || card.id === secondIdCard)
+          ) {
             return {
               ...card,
               matched: true,
@@ -64,7 +73,7 @@ export default function CardGrid() {
     }, 1000)
   }
 
-  const selectedCardsLengthChecker = selectedCards =>
+  const selectedCardsLengthChecker = (selectedCards: string[]) =>
     selectedCards.length === 2 && matchCheck()
 
   useEffect(() => {
@@ -84,7 +93,6 @@ export default function CardGrid() {
             cardMatched={card.matched}
           />
           <Card
-            cardId={card.id}
             cardContent={card.content}
             flipped={card.flipped}
             cardMatched={card.matched}
